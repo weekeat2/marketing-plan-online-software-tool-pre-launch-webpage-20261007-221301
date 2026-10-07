@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Software Tool - Project Management for Southeast Asia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fb;
+            --bg-tertiary: #f0f2f7;
+            --text-primary: #1a1f36;
+            --text-secondary: #525863;
+            --text-light: #8b92a6;
+            --accent-primary: #0066ff;
+            --accent-secondary: #00d4ff;
+            --border-color: #e0e3eb;
+            --shadow-sm: 0 2px 8px rgba(26, 31, 54, 0.06);
+            --shadow-md: 0 8px 24px rgba(26, 31, 54, 0.1);
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin-inline: auto;
+            padding-inline: var(--spacing-md);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding-inline: var(--spacing-sm);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: var(--spacing-md) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fb 0%, #f0f2f7 100%);
+            padding: var(--spacing-2xl) 0;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background-color: var(--accent-primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .hero-cta:hover {
+            background-color: #0052cc;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-visual {
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            border-radius: var(--radius-lg);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            padding: var(--spacing-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-text p {
+                font-size: 16px;
+            }
+
+            .hero-visual {
+                height: 280px;
+            }
+
+            .hero {
+                padding: var(--spacing-xl) 0;
+            }
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--bg-primary);
+        }
+
+        .section-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .section-subheading {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .problem-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .problem-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-md);
+            font-size: 28px;
+        }
+
+        .problem-card h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .section-heading {
+                font-size: 28px;
+            }
+
+            .problem {
+                padding: var(--spacing-xl) 0;
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .features-text h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.2;
+        }
+
+        .features-text p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .feature-item {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: flex-start;
+        }
+
+        .feature-check {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .feature-item p {
+            color: var(--text-primary);
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .features-visual {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border-radius: var(--radius-lg);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-text h2 {
+                font-size: 28px;
+            }
+
+            .features-visual {
+                height: 280px;
+            }
+
+            .features {
+                padding: var(--spacing-xl) 0;
+            }
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--bg-primary);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .benefit-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .benefit-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .benefit-card h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .benefits {
+                padding: var(--spacing-xl) 0;
+            }
+        }
+
+        /* Interest Section */
+        .interest {
+            padding: var(--spacing-2xl) 0;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+        }
+
+        .interest-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .interest-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .interest-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        form {
+            background-color: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group:last-of-type {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0052cc;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        .status-message {
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        .status-message.show {
+            display: block;
+        }
+
+        .status-message.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .status-message.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        #byteforce-registration-form {
+            grid-column: 1;
+        }
+
+        .update-email-section {
+            grid-column: 2;
+        }
+
+        .update-email-section h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .update-email-section p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .update-email-section {
+                grid-column: auto;
+            }
+
+            .interest-heading {
+                font-size: 28px;
+            }
+
+            .interest {
+                padding: var(--spacing-xl) 0;
+            }
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: var(--spacing-2xl) 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .faq-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .accordion {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .accordion-item {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .accordion-button {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .accordion-button::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--accent-primary);
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.open .accordion-button::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-item.open .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-body {
+            padding: 0 var(--spacing-md) var(--spacing-md);
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .faq {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .accordion-button {
+                padding: var(--spacing-md) var(--spacing-sm);
+                font-size: 15px;
+            }
+
+            .accordion-body {
+                padding: 0 var(--spacing-sm) var(--spacing-sm);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-primary);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-column h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--spacing-lg);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+        }
+
+        /* Utility */
+        .text-center {
+            text-align: center;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="brand">Online Software Tool</a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#interest">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Simplify Team Collaboration and Project Tracking</h1>
+                    <p>Online Software Tool helps project managers standardize reporting, reduce meeting time, and keep teams aligned—all in one lightweight platform built for teams of 5 to 50.</p>
+                    <a href="#interest" class="hero-cta">Register for a Free Trial</a>
+                </div>
+                <div class="hero-visual">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 12px;">📊</div>
+                        <div>Streamlined Project Management for Southeast Asia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-heading">The Challenge Project Managers Face</h2>
+            <p class="section-subheading">Traditional project management is fragmented, time-consuming, and leaves teams struggling to stay aligned.</p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">⏱️</div>
+                    <h3>Endless Meetings</h3>
+                    <p>Teams spend hours in status updates instead of doing actual work.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📋</div>
+                    <h3>Inconsistent Reporting</h3>
+                    <p>Different teams use different formats, making it hard to track progress.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🔀</div>
+                    <h3>Communication Gaps</h3>
+                    <p>Information gets lost across emails, messages, and scattered tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="features-text">
+                    <h2>Lightweight Project Tracking That Works</h2>
+                    <p>Online Software Tool is built for practical project managers who need simple, powerful tools without the complexity.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <p><strong>Lightweight Design:</strong> No bloated features, just what your team needs.</p>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <p><strong>Team Collaboration:</strong> Real-time updates and transparent task visibility.</p>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <p><strong>Standardized Reporting:</strong> Consistent reporting across all teams.</p>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-check">✓</div>
+                            <p><strong>Reduced Meeting Time:</strong> Fewer status calls, more productive time.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="features-visual">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 12px;">👥</div>
+                        <div>Designed for Teams of 5 to 50</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-heading">Why Choose Online Software Tool</h2>
+            <p class="section-subheading">Get real results that matter to your team's productivity and collaboration.</p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-number">40%</div>
+                    <h3>Less Meeting Time</h3>
+                    <p>Clear visibility into project status means fewer status-update meetings.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">100%</div>
+                    <h3>Standardized Reports</h3>
+                    <p>Every team follows the same reporting structure for consistency.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">3x</div>
+                    <h3>Faster Handoffs</h3>
+                    <p>Smooth team transitions with clear documentation and context.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">100%</div>
+                    <h3>Aligned Teams</h3>
+                    <p>Everyone knows priorities, progress, and blockers in real time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interest Section -->
+    <section class="interest" id="interest">
+        <div class="container">
+            <div class="interest-wrapper">
+                <h2 class="interest-heading">Ready for a Smarter Way to Track Projects?</h2>
+                <p class="interest-description">Register for a free trial and see how Online Software Tool can transform your team's collaboration and productivity.</p>
+
+                <div class="form-grid">
+                    <!-- Expression of Interest Form -->
+                    <form id="byteforce-registration-form" action="" method="POST">
+                        <div class="form-group">
+                            <label for="byteforce-name">Your Name</label>
+                            <input type="text" id="byteforce-name" name="name" required autocomplete="name" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="byteforce-email">Email Address</label>
+                            <input type="email" id="byteforce-email" name="email" required autocomplete="email" placeholder="your@email.com">
+                        </div>
+                        <button type="submit">Register for a Free Trial</button>
+                        <div id="byteforce-registration-status" class="status-message"></div>
+                    </form>
+
+                    <!-- Update Email Form -->
+                    <div class="update-email-section">
+                        <form id="byteforce-update-email-form" action="" method="POST">
+                            <h3>Update Your Email</h3>
+                            <p>Already registered? Update your email address to stay connected.</p>
+                            <div class="form-group">
+                                <label for="byteforce-old-email">Current Email</label>
+                                <input type="email" id="byteforce-old-email" name="old_email" required autocomplete="email" placeholder="old@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="byteforce-new-email">New Email</label>
+                                <input type="email" id="byteforce-new-email" name="new_email" required autocomplete="email" placeholder="new@email.com">
+                            </div>
+                            <button type="submit">Update Email</button>
+                            <div id="byteforce-update-email-status" class="status-message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-wrapper">
+                <h2 class="section-heading">Frequently Asked Questions</h2>
+                <ul class="accordion">
+                    <li class="accordion-item">
+                        <button class="accordion-button" type="button">What is Online Software Tool?</button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                Online Software Tool is a lightweight project and work-tracking platform designed specifically for project managers in tech companies. It streamlines team collaboration, standardizes reporting, and reduces meeting time by giving teams a single source of truth for project progress.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item">
+                        <button class="accordion-button" type="button">Who is this tool built for?</button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                Online Software Tool is perfect for project managers in tech companies managing teams of 5 to 50 people. If you're struggling with meeting overload, inconsistent reporting, or communication gaps, this tool is designed for you.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item">
+                        <button class="accordion-button" type="button">What does the free trial include?</button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                After registering for the free trial, you'll gain full access to all core features of Online Software Tool. You'll be able to set up your first project, invite team members, and experience how the platform transforms your team's collaboration and reporting.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item">
+                        <button class="accordion-button" type="button">When is it available?</button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                Online Software Tool is currently in pre-launch. By registering your interest, you'll be among the first to access the platform when it becomes available in Southeast Asia, and you'll receive exclusive early-adopter information.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#interest">Free Trial</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#terms">Terms</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Region</h4>
+                    <ul>
+                        <li><a href="#">Southeast Asia</a></li>
+                        <li><a href="#">More Regions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Online Software Tool. All rights reserved. Pre-launch platform for Southeast Asia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const item = this.closest('.accordion-item');
+                item.classList.toggle('open');
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+<!-- byteforce-lead-form-injected -->
+<script>
+(function () {
+  var BYTEFORCE_WEBSITE_ID   = "website-1985";
+  var BYTEFORCE_WEBSITE_NAME = "Marketing Plan - Online software tool, pre-launch";
+  var BYTEFORCE_WEBHOOK_URL  = "https://agenticflows.westus3.cloudapp.azure.com/webhook/user-register";
+
+  function findField(form, patterns) {
+    var candidates = form.querySelectorAll('input, textarea');
+    for (var i = 0; i < candidates.length; i++) {
+      var el = candidates[i];
+      var haystack = ((el.name || '') + ' ' + (el.id || '') + ' ' + (el.type || '') + ' ' + (el.placeholder || '')).toLowerCase();
+      for (var j = 0; j < patterns.length; j++) {
+        if (haystack.indexOf(patterns[j]) !== -1) return el;
+      }
+    }
+    return null;
+  }
+
+  function showMessage(form, text, isError) {
+    var el = form.querySelector('.byteforce-form-message');
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'byteforce-form-message';
+      el.style.marginTop = '12px';
+      el.style.fontSize = '14px';
+      el.style.fontFamily = 'inherit';
+      form.appendChild(el);
+    }
+    el.textContent = text;
+    el.style.color = isError ? '#dc2626' : '#059669';
+  }
+
+  function attach(form) {
+    if (form.dataset.byteforceBound === '1') return;
+    form.dataset.byteforceBound = '1';
+
+    // Defence-in-depth against native submission ever navigating anywhere —
+    // a form with no action attribute defaults to submitting to the current
+    // document's URL, which for a srcDoc preview iframe resolves to the
+    // PARENT page's own URL (the dashboard), not a blank page. Belt-and-
+    // braces alongside preventDefault() below and the iframe's sandbox
+    // (which already omits allow-forms — see WebsitePreview.jsx).
+    form.setAttribute('action', '#');
+
+    var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]') || form.querySelector('button');
+    var submitting = false;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (submitting) return;
+
+      var emailEl = findField(form, ['email']);
+      var nameEl  = findField(form, ['name']) || form.querySelector('input[type="text"]');
+      var email   = emailEl ? emailEl.value.trim() : '';
+      var name    = nameEl ? nameEl.value.trim() : '';
+
+      if (!email) {
+        showMessage(form, 'Please enter a valid email address.', true);
+        return;
+      }
+
+      submitting = true;
+      var originalText = submitBtn ? submitBtn.textContent : null;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+      }
+
+      fetch(BYTEFORCE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action:      'register',
+          name:        name,
+          email:       email,
+          websiteId:   BYTEFORCE_WEBSITE_ID,
+          websiteName: BYTEFORCE_WEBSITE_NAME,
+          source:      window.location.origin,
+        }),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Request failed');
+          return res.json().catch(function () { return {}; });
+        })
+        .then(function () {
+          showMessage(form, "Thanks! We've received your submission.", false);
+          form.reset();
+        })
+        .catch(function () {
+          showMessage(form, 'Something went wrong. Please try again.', true);
+        })
+        .finally(function () {
+          submitting = false;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+        });
+    });
+  }
+
+  function init() {
+    var forms = document.querySelectorAll('form');
+    var bound = 0;
+    for (var i = 0; i < forms.length; i++) {
+      // One malformed form (e.g. an AI-generated quirk) shouldn't stop the
+      // rest from getting bound — each form is independent.
+      try {
+        attach(forms[i]);
+        bound++;
+      } catch (err) {
+        console.error('[byteforce-lead-form] failed to bind form', i, err);
+      }
+    }
+    // Verifiable from the browser console — confirms both that this script
+    // ran at all and how many forms it actually bound, without guessing.
+    window.__byteforceLeadForm = { ready: true, formsFound: forms.length, formsBound: bound };
+    console.log('[byteforce-lead-form] ready — found ' + forms.length + ' form(s), bound ' + bound);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
